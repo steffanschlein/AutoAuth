@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 300px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
+    //-webkit-animation-name: animatetop;
+    //-webkit-animation-duration: 0.4s;
+    //animation-name: animatetop;
+    //animation-duration: 0.4s
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+@keyframes animatetop {
+    from {top:-300px; opacity:0}
+    to {top:0; opacity:1}
+}
+
+.modal-header {
+    padding: 6px 16px;
+    background-color: #5cb85c;
+    color: white;
+}
+
+.modal-body {padding: 2px 16px;}
+
+.modal-footer {
+    padding: 8px 16px;
+    background-color: #5cb85c;
+    color: white;
+    height: 24px;
+}
+.modal-footer div {
+    float: right;
+}
+</style>
+</head>
+<body>
+
+<h2>AutoAuth Extension</h2>
+
+<p>
+    For AutoAuth to be able to fill in your credentials automatically you need to enter them here. For further details why this is necessary see below.
+</p>
+
+<!-- Trigger/Open The Modal -->
+<!--<button id="myBtn">Open Modal</button>-->
+
+<!-- The Modal -->
+<!--<div id="myModal" class="modal">-->
+
+  <!-- Modal content -->
+  <form id="myform">
+  <div class="modal-content">
+    <div class="modal-header">
+      Login credentials
+    </div>
+    <div class="modal-body">
+      <p>Username: <input type="text" id="username"></p>
+      <p>Password: <input type="password" id="pw"></p>
+    </div>
+    <div class="modal-footer">
+    	<div>
+      		<button id="cancel">Cancel</button><button type="submit" id="submit">Submit</button>
+        </div>
+    </div>
+  </div>
+  <form>
+
+<h4>Why do I need to fill in my credentials in a non-standard input field?</h4>
+
+<p>With Firefox 57 old fashioned extensions are disabled. Only addons based on WebExtensions are allowed. Before this addon basically waited for Firefox' modal window asking for your password and automatically hit enter for you. With the new WebExtensions interface this is not possible anymore. Instead the addon now intercepts responses that need basic authentication and send your credentials automatically.</p>
+
+<h4>Why can AutoAuth not read my credentials from Firefox' saved credentials?</h4>
+
+<p>Unfortinatly there is no API yet to access these passwords. Thus AutoAuth needs to save the credentials itself.</p>
+
+<h4>How are my passwords stored?</h4>
+
+<p>Your passwords are stored unencrypted, as there does not exist an API to derive an encryption key. Asking for an encryption password each time the addon is used would defeat it's purpose. The passwords are stored in the same directory Firefox stores its passwords and is thus equally secure if you do not use a master password.</p>
+
+<!--</div>-->
+
+<script src="model.js"></script>
+
+</body>
+</html>

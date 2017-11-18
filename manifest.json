@@ -1,0 +1,32 @@
+{
+
+  "manifest_version": 2,
+  "name": "AutoAuth",
+  "version": "3.0",
+
+  "description": "Automatically provides HTTP authentication credentials.",
+
+  "permissions": [
+      "webRequest",
+      "webRequestBlocking",
+      "storage",
+      "<all_urls>"
+  ],
+
+  "background": {
+    "scripts": [
+      "auth.js"
+    ]
+},
+  "options_ui": {
+      "page": "options.html",
+      "browser_style": true
+  },
+  "applications": {
+  "gecko": {
+    "id": "autoauth@efinke.com",
+    "strict_min_version": "42.0"
+  }
+}
+
+}
