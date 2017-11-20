@@ -70,6 +70,10 @@
     For AutoAuth to be able to fill in your credentials automatically you need to enter them here. For further details why this is necessary see below.
 </p>
 
+<p id="error_banner" hidden="" style="color: red;">
+    An error has occured while logging in. Maybe your credentials were wrong. You can try again or mark this page to be ignored by AutoAuth. You can unignore the page in the AuthAuth's options page.
+</p>
+
 <!-- Trigger/Open The Modal -->
 <!--<button id="myBtn">Open Modal</button>-->
 
@@ -88,7 +92,7 @@
     </div>
     <div class="modal-footer">
     	<div>
-      		<button id="cancel">Cancel</button><button type="submit" id="submit">Submit</button>
+      		<button id="cancel">Cancel / Ignore</button><button type="submit" id="submit">Submit</button>
         </div>
     </div>
   </div>
@@ -108,7 +112,7 @@
 
 <!--</div>-->
 
-<script src="model.js"></script>
+<script src="modal.js"></script>
 
 </body>
 </html>

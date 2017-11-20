@@ -19,6 +19,7 @@ function findGetParameter(parameterName) {
 
 var host = findGetParameter("host");
 var url = findGetParameter("url");
+var is_error = findGetParameter("is_error") == 'true';
 
 myform.onsubmit = function(e) {
     e.preventDefault();
@@ -33,4 +34,8 @@ cancel.onclick = function() {
     obj[host] = "no";
     browser.storage.local.set(obj);
     location.href = url;
+}
+
+if (is_error) {
+    document.getElementById("error_banner").removeAttribute("hidden");
 }
