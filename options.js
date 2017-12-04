@@ -7,7 +7,7 @@ function appendHtml(el, str) {
 }
 
 function isEmpty(obj) {
-    return Object.keys(obj).length === 0;
+    return !obj || Object.keys(obj).length === 0;
 }
 
 let gettingItem = browser.storage.local.get();

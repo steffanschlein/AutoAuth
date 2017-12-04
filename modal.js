@@ -29,7 +29,8 @@ myform.onsubmit = function(e) {
     location.href = url;
 }
 
-cancel.onclick = function() {
+cancel.onclick = function(e) {
+    e.preventDefault();
     obj = {};
     obj[host] = "no";
     browser.storage.local.set(obj);
