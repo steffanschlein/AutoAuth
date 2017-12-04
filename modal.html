@@ -80,8 +80,8 @@
 <!-- The Modal -->
 <!--<div id="myModal" class="modal">-->
 
-  <!-- Modal content -->
-  <form id="myform">
+<!-- Modal content -->
+<form id="myform">
   <div class="modal-content">
     <div class="modal-header">
       Login credentials
@@ -91,28 +91,28 @@
       <p>Password: <input type="password" id="pw"></p>
     </div>
     <div class="modal-footer">
-    	<div>
-      		<button id="cancel">Cancel / Ignore</button><button type="submit" id="submit">Submit</button>
-        </div>
+      <div>
+        <button id="cancel">Cancel / Ignore</button><button type="submit" id="submit">Submit</button>
+      </div>
     </div>
   </div>
   <form>
 
-<h4>Why do I need to fill in my credentials in a non-standard input field?</h4>
+    <h4>Why do I need to fill in my credentials in a non-standard input field?</h4>
 
-<p>With Firefox 57 old fashioned extensions are disabled. Only addons based on WebExtensions are allowed. Before this addon basically waited for Firefox' modal window asking for your password and automatically hit enter for you. With the new WebExtensions interface this is not possible anymore. Instead the addon now intercepts responses that need basic authentication and send your credentials automatically.</p>
+    <p>With Firefox 57 old fashioned extensions are disabled. Only addons based on WebExtensions are allowed. Before this addon basically waited for Firefox' modal window asking for your password and automatically hit enter for you. With the new WebExtensions interface this is not possible anymore. Instead the addon now intercepts responses that need basic authentication and send your credentials automatically.</p>
 
-<h4>Why can AutoAuth not read my credentials from Firefox' saved credentials?</h4>
+    <h4>Why can AutoAuth not read my credentials from Firefox' saved credentials?</h4>
 
-<p>Unfortinatly there is no API yet to access these passwords. Thus AutoAuth needs to save the credentials itself.</p>
+    <p>Unfortinatly there is no API yet to access these passwords. Thus AutoAuth needs to save the credentials itself.</p>
 
-<h4>How are my passwords stored?</h4>
+    <h4>How are my passwords stored?</h4>
 
-<p>Your passwords are stored unencrypted, as there does not exist an API to derive an encryption key. Asking for an encryption password each time the addon is used would defeat it's purpose. The passwords are stored in the same directory Firefox stores its passwords and is thus equally secure if you do not use a master password.</p>
+    <p>Your passwords are stored unencrypted, as there does not exist an API to derive an encryption key. Asking for an encryption password each time the addon is used would defeat it's purpose. The passwords are stored in the same directory Firefox stores its passwords and is thus equally secure if you do not use a master password.</p>
 
-<!--</div>-->
+    <!--</div>-->
 
-<script src="modal.js"></script>
+    <script src="modal.js"></script>
 
 </body>
 </html>
