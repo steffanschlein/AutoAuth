@@ -14,13 +14,14 @@ function completed(requestDetails) {
     }
 }
 
-
 /*
- * Helper to extract the hostname and port from an URL
+ * Helper to extract the hostname and port from an URL.
+ * @param url The url to take the parameter from. Expects a propper protocol prefex like 'http://' or 'https://'.
+ * @returns An array of length two. The first element is the hostname as taken from the url. The second element is the hostname with a ':*' suffix.
  */
-function getHostname(url) {
-    var arr = url.split("/");
-    return arr[2];
+function getHostnames(url) {
+    var [, , host_and_port] = url.split("/");
+    return [host_and_port, host_and_port.split(":")[0] + ":*"];
 }
 
 /*
@@ -31,7 +32,7 @@ function isEmpty(obj) {
 }
 
 function hijackTab(requestDetails, is_error) {
-    var host = getHostname(requestDetails.url);
+    var host = getHostnames(requestDetails.url)[0];
     const url = browser.extension.getURL("modal.html?host=" + encodeURI(host) + "&url=" + escape(encodeURI(requestDetails.url)) + "&is_error=" + is_error);
     var tabId = requestDetails.tabId;
     browser.tabs.update(tabId, {
@@ -51,20 +52,28 @@ function provideCredentialsAsync(requestDetails) {
         // Mark the request as seen
         pendingRequests.push(requestDetails.requestId);
 
-        var host = getHostname(requestDetails.url);
+        var hosts = getHostnames(requestDetails.url);
 
-        let gettingItem = browser.storage.local.get(host);
-        return gettingItem.then(item=>{
-            if(Object.values(item)[0] && (!Object.values(item)[0]["username"] || Object.values(item)[0]["username"] == "")) {
-                // Host was ignored. Do nothing.
-                return;
-            }
-            if(isEmpty(item) || !Object.values(item)[0]) {
+        let gettingItem = browser.storage.local.get(hosts);
+        return gettingItem.then(credentials => {
+            if (isEmpty(credentials)) {
                 // No credentials set yet and host is not ignored, so redirect to page to ask for credentials
                 return hijackTab(requestDetails, false);
             }
-            // We have credentials saved, supply them
-            return {authCredentials: Object.values(item)[0]};
+
+            // Take credentials with longest host.
+            var possibleCreds = Object.entries(credentials);
+            possibleCreds.sort((a, b) => b.length - a.length);
+            credentials = possibleCreds[0][1];
+
+            if (credentials == "ignored") {
+                // Host was ignored. Do nothing.
+                return;
+            }
+            else {
+                // There are credentials stored for the host.
+                return {authCredentials: credentials};
+            }
         });
     }
 }

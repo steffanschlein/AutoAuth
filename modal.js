@@ -17,26 +17,37 @@ function findGetParameter(parameterName) {
     return result;
 }
 
+function isDefaultPort(host) {
+    return host.split(":").length == 1;
+}
+
 var host = findGetParameter("host");
 var url = findGetParameter("url");
 var is_error = findGetParameter("is_error") == 'true';
 
 myform.onsubmit = function(e) {
     e.preventDefault();
-    obj = {};
-    obj[host] = {username: user.value, password: pw.value};
-    browser.storage.local.set(obj);
+    if (all_ports.checked) {
+        host = host.split(':')[0] + ':' + '*';
+    }
+    browser.storage.local.set({[host]: {username: user.value, password: pw.value}});
     location.href = url;
 }
 
 cancel.onclick = function(e) {
     e.preventDefault();
-    obj = {};
-    obj[host] = "no";
-    browser.storage.local.set(obj);
+    if (all_ports.checked) {
+        host = host.split(':')[0] + ':' + '*';
+    }
+    browser.storage.local.set({[host]: "ignored"});
     location.href = url;
 }
 
 if (is_error) {
     document.getElementById("error_banner").removeAttribute("hidden");
 }
+
+if (!isDefaultPort(host)) {
+    document.getElementById("port-container").style.display = "block";
+}
+
