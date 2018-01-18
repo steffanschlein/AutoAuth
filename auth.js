@@ -32,7 +32,7 @@ function isEmpty(obj) {
 
 function hijackTab(requestDetails, is_error) {
     var host = getHostname(requestDetails.url);
-    const url = browser.extension.getURL("modal.html?host=" + encodeURI(host) + "&url=" + encodeURI(requestDetails.url) + "&is_error=" + is_error);
+    const url = browser.extension.getURL("modal.html?host=" + encodeURI(host) + "&url=" + escape(encodeURI(requestDetails.url)) + "&is_error=" + is_error);
     var tabId = requestDetails.tabId;
     browser.tabs.update(tabId, {
         url: url
