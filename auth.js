@@ -79,6 +79,22 @@ function provideCredentialsAsync(requestDetails) {
 }
 
 /*
+ * Handles updates of addon and migrates formats.
+ */
+function migration(details) {
+    browser.storage.local.get(null).then(credentials => {
+        Object.keys(credentials).forEach(function(host) {
+            if (!credentials[host]) {
+                browser.storage.local.remove(host);
+            }
+            else if (credentials[host] == "no") {
+                browser.storage.local.set({[host]: "ignored"});
+            }
+        });
+    });
+}
+
+/*
  * Register request listeners
  */
 browser.webRequest.onAuthRequired.addListener(
@@ -96,3 +112,6 @@ browser.webRequest.onErrorOccurred.addListener(
     completed,
     {urls: [target]}
 );
+
+browser.runtime.onInstalled.addListener(migration);
+
