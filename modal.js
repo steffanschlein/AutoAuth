@@ -1,7 +1,8 @@
 var user = document.getElementById("username");
 var pw = document.getElementById("pw");
+var all_ports = document.getElementById("all-ports");
 
-var myform = document.getElementById("myform");
+var submit = document.getElementById("submit");
 var cancel = document.getElementById("cancel");
 
 function findGetParameter(parameterName) {
@@ -25,7 +26,7 @@ var host = findGetParameter("host");
 var url = findGetParameter("url");
 var is_error = findGetParameter("is_error") == 'true';
 
-myform.onsubmit = function(e) {
+submit.onclick = function(e) {
     e.preventDefault();
     if (all_ports.checked) {
         host = host.split(':')[0] + ':' + '*';
@@ -44,7 +45,7 @@ cancel.onclick = function(e) {
 }
 
 if (is_error) {
-    document.getElementById("error_banner").removeAttribute("hidden");
+    document.getElementById("error-banner").removeAttribute("hidden");
 }
 
 if (!isDefaultPort(host)) {

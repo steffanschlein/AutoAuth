@@ -25,7 +25,7 @@ function getHostnames(url) {
 }
 
 /*
- * Helper to check if a dictionary contains no keys
+ * Helper to check if a dictionary contains no keys.
  */
 function isEmpty(obj) {
     return Object.keys(obj).length === 0;
@@ -38,7 +38,7 @@ function hijackTab(requestDetails, is_error) {
     browser.tabs.update(tabId, {
         url: url
     });
-    return {cancel: true}
+    return {cancel: true};
 }
 
 /*

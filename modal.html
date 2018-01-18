@@ -2,22 +2,6 @@
 <html>
 <head>
 <style>
-/* The Modal (background) */
-.modal {
-    display: none; /* Hidden by default */
-    position: fixed; /* Stay in place */
-    z-index: 1; /* Sit on top */
-    padding-top: 100px; /* Location of the box */
-    left: 0;
-    top: 0;
-    width: 100%; /* Full width */
-    height: 100%; /* Full height */
-    overflow: auto; /* Enable scroll if needed */
-    background-color: rgb(0,0,0); /* Fallback color */
-    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
-}
-
-/* Modal Content */
 .modal-content {
     position: relative;
     background-color: #fefefe;
@@ -26,21 +10,6 @@
     border: 1px solid #888;
     width: 300px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2),0 6px 20px 0 rgba(0,0,0,0.19);
-    //-webkit-animation-name: animatetop;
-    //-webkit-animation-duration: 0.4s;
-    //animation-name: animatetop;
-    //animation-duration: 0.4s
-}
-
-/* Add Animation */
-@-webkit-keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
-}
-
-@keyframes animatetop {
-    from {top:-300px; opacity:0}
-    to {top:0; opacity:1}
 }
 
 .modal-header {
@@ -70,17 +39,10 @@
     For AutoAuth to be able to fill in your credentials automatically you need to enter them here. For further details why this is necessary see below.
 </p>
 
-<p id="error_banner" hidden="" style="color: red;">
+<p id="error-banner" hidden="" style="color: red;">
     An error has occured while logging in. Maybe your credentials were wrong. You can try again or mark this page to be ignored by AutoAuth. You can unignore the page in the AuthAuth's options page.
 </p>
 
-<!-- Trigger/Open The Modal -->
-<!--<button id="myBtn">Open Modal</button>-->
-
-<!-- The Modal -->
-<!--<div id="myModal" class="modal">-->
-
-<!-- Modal content -->
 <form id="myform">
   <div class="modal-content">
     <div class="modal-header">
@@ -93,27 +55,30 @@
     </div>
     <div class="modal-footer">
       <div>
-        <button id="cancel">Cancel / Ignore</button><input type="submit" id="submit" value="Submit">
+        <button type="button" id="cancel">Cancel / Ignore</button>
+        <button type="submit" id="submit">Submit</button>
       </div>
     </div>
   </div>
-  </form>
+</form>
 
-    <h4>Why do I need to fill in my credentials in a non-standard input field?</h4>
+<h4>Why do I need to fill in my credentials in a non-standard input field?</h4>
 
-    <p>With Firefox 57 old fashioned extensions are disabled. Only addons based on WebExtensions are allowed. Before this addon basically waited for Firefox' modal window asking for your password and automatically hit enter for you. With the new WebExtensions interface this is not possible anymore. Instead the addon now intercepts responses that need basic authentication and send your credentials automatically.</p>
+<p>With Firefox 57 old fashioned extensions are disabled. Only addons based on WebExtensions are allowed. Before this addon basically waited for Firefox' modal window asking for your password and automatically hit enter for you. With the new WebExtensions interface this is not possible anymore. Instead the addon now intercepts responses that need basic authentication and send your credentials automatically.</p>
 
-    <h4>Why can AutoAuth not read my credentials from Firefox' saved credentials?</h4>
+<h4>Why can AutoAuth not read my credentials from Firefox' saved credentials?</h4>
 
-    <p>Unfortinatly there is no API yet to access these passwords. Thus AutoAuth needs to save the credentials itself.</p>
+<p>Unfortinatly there is no API yet to access these passwords. Thus AutoAuth needs to save the credentials itself.</p>
 
-    <h4>How are my passwords stored?</h4>
+<h4>How are my passwords stored?</h4>
 
-    <p>Your passwords are stored unencrypted, as there does not exist an API to derive an encryption key. Asking for an encryption password each time the addon is used would defeat it's purpose. The passwords are stored in the same directory Firefox stores its passwords and is thus equally secure if you do not use a master password.</p>
+<p>Your passwords are stored unencrypted, as there does not exist an API to derive an encryption key. Asking for an encryption password each time the addon is used would defeat it's purpose. The passwords are stored in the same directory Firefox stores its passwords and is thus equally secure if you do not use a master password.</p>
 
-    <!--</div>-->
+<h4>How can a delete stored passwords or remove a host from the ignored list?</h4>
 
-    <script src="modal.js"></script>
+<p>In the addons overview, click on settings of this addon. There you can manage all the credentials saved by this addon.</p>
+
+<script src="modal.js"></script>
 
 </body>
 </html>
